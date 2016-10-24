@@ -101,6 +101,8 @@ module.exports = function(app, passport) {
         })
             .then(function(data) {
                 res.json(data);
+                console.log("check here..........");
+                console.log(data);
             })
             .catch(function(err) {
                 console.log(err);
@@ -112,10 +114,12 @@ module.exports = function(app, passport) {
         yelp.search({
             term: "food",
             //bounds: swLat + "," + swLong + "|" + neLat + "," + neLong
-            location: cityName
+            location: fullerton
         })
             .then(function(data) {
                 res.json(data);
+                console.log(data);
+                console.log("End here..........");
             })
             .catch(function(err) {
                 console.log(err);

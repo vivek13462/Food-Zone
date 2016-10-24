@@ -200,11 +200,11 @@ function submitClicked(item) {
         $("." + $(item).attr("id") + " .submitResult").fadeIn();
     } else if ($("." + $(item).attr("id") + " textarea").val() && $("." + $(item).attr("id") + " .select-dropdown").val() != "Select Rating") {
         submitReview($(item).attr("id"));
-    } /*else {
+    } else {
         $("." + $(item).attr("id") + " .submitResult").text("Please fill in all fieldskkkk!").removeClass("green-text").addClass("red-text");
         $("." + $(item).attr("id") + " .submitResult").hide();
         $("." + $(item).attr("id") + " .submitResult").fadeIn();
-    }*/
+    }
 }
 
 function revealReview(phone) {
