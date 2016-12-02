@@ -14,7 +14,7 @@ body {
 
 .modal{
     padding: 2em 2em 2em 2em;
-    color: #000;
+    color: blue;
     width: 30%;
 }
 
@@ -23,21 +23,21 @@ body {
 }
 
 .first{
-    background-image: url('/images/banner.jpg');
+    background-image: url('/images/image2.jpeg');
+    background-size: 120%;
+    height: 40em;
+    color: black;
+    padding-top: 5em;
+}
+
+/*.second{
+    background-image: url('/images/image1.jpeg');
     background-size: 120%;
     height: 35em;
     color: #FFF;
     padding-top: 5em;
 }
-
-.second{
-    background-image: url('/images/banner2.jpg');
-    background-size: 120%;
-    height: 35em;
-    color: #FFF;
-    padding-top: 5em;
-}
-
+*/
 .icon-block {
   padding: 0 15px;
 }
@@ -62,7 +62,7 @@ textarea{
 }
 
 footer.page-footer{
-    background-color: black;
+    background-color: DarkSalmon;
     height: 4em;
     margin-top: 0;
     color: #FFF;

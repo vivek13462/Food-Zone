@@ -25,12 +25,17 @@ function getLocation() {
 }
 
 function showPosition(position) {
+    
+   /* myVar = document.getElementById('category').value; 
+    alert(myVar);*/
+    //alert(txtPlaces.value);
+    //var pos = txtPlaces.value;
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
     var latlon = new google.maps.LatLng(lat, lon);
     var mapholder = document.getElementById('mapholder');
     mapholder.style.height = '250px';
-    mapholder.style.width = '500px';
+    mapholder.style.width = '400px';
 
     var myOptions = {
         center: latlon,
@@ -56,10 +61,12 @@ function showPosition(position) {
         dataType: "json",
         data: {
             "latitude": position.coords.latitude,
-            "longitude": position.coords.longitude
+            "longitude": position.coords.longitude,
+            //"category": Night life
         },
         type: 'GET',
         success: function(data) {
+
             //console.log(data);
             data.businesses.forEach(function(business) {
                 //console.log(business);
@@ -86,11 +93,11 @@ function showPosition(position) {
                                 $("div." + result[index].restaurantID + " .collection-item ." + index).append($("<i>supervisor_account</i>").addClass("material-icons circle light-blue lighten-1"));
                                 $("div." + result[index].restaurantID + " .collection-item ." + index).append($("<span>").addClass("title").text(result[index].user + " - " + result[index].date));
                                 $("div." + result[index].restaurantID + " .collection-item ." + index).append($("<p>").text(result[index].written));
-                                $("div." + result[index].restaurantID + " .collection-item ." + index).append("<img width=\"70px\" height=\"70px\" src=\"" + result[index].image + "\"></img>");
+                               /* $("div." + result[index].restaurantID + " .collection-item ." + index).append("<img width=\"70px\" height=\"70px\" src=\"" + result[index].image + "\"></img>");*/
                                 $("div." + result[index].restaurantID + " .collection-item ." + index).append($("<a>").addClass("secondary-content"));
-                                for (var i = 0; i < result[index].rating; i++) {
+                                /*for (var i = 0; i < result[index].rating; i++) {
                                     $("." + result[index].restaurantID + " .collection-item ." + index + " .secondary-content").append($("<i>grade</i>").addClass("material-icons"));
-                                }
+                                }*/
                                 index++;
                             }
                         }
@@ -137,8 +144,31 @@ function upload_image() {
     //console.log(file_path);
 }
 
+
+function city(){
+   // alert("city");
+  var temp = document.getElementById('txtPlaces').value;
+  //alert(temp);
+    $.ajax({
+        url: '/try2',
+        dataType: "json",
+        data: {
+            "txtPlaces": temp,
+            
+        },
+        type: 'POST'
+/*        success: function(data) { 
+
+}
+error: function(xhr, status, error) {
+            
+        }*/
+    });
+}
+
 function submitReview(dataID) {
     //Preparing variables to post '/review' and store in mongoDB
+    alert("Review Successfully submitted..!");
     userCurrent = $('#userCurrent').text();
     var starRating = $("." + dataID + " :selected").val();
     starRating = Number(starRating);
@@ -168,7 +198,7 @@ function submitReview(dataID) {
             $("." + dataID + " .select-dropdown").val("Select Rating");
             $("." + dataID + " textarea").val("");
             $("." + dataID + " .userReview").hide();
-            $("." + dataID + " .submitResult").text("Review successfully submitted!").removeClass("red-text").addClass("green-text");
+            //$("." + dataID + " .submitResult").text("Review successfully submitted!").removeClass("red-text").addClass("green-text");
             $("." + dataID + " .submitResult").hide();
             $("." + dataID + " .submitResult").fadeIn();
 
@@ -216,6 +246,6 @@ function clicked(item) {
     revealReview($(item).attr("id"));
 }
 
-$("#findFood").click(function(e) {
+$("#try").click(function(e) {
     getLocation();
 });

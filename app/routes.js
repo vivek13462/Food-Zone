@@ -42,6 +42,7 @@ module.exports = function(app, passport) {
     // LOGIN ===============================
     // show the login form
     app.get('/login', function(req, res) {
+        
         res.render('login.ejs', {
             message: req.flash('loginMessage')
         });
@@ -95,9 +96,9 @@ module.exports = function(app, passport) {
         var neLong = parseFloat(req.query.longitude) + 0.0075;
 
         yelp.search({
-            term: "food",
-            bounds: swLat + "," + swLong + "|" + neLat + "," + neLong
-            //location: 'San-Francisco'
+            term: 'Tourist',
+            //bounds: swLat + "," + swLong + "|" + neLat + "," + neLong
+            location: city
         })
             .then(function(data) {
                 res.json(data);
@@ -112,9 +113,9 @@ module.exports = function(app, passport) {
     app.get('/findHangout', function(req, res) {
         var cityName = req.query.cityName;
         yelp.search({
-            term: "food",
+            term: "active life",
             //bounds: swLat + "," + swLong + "|" + neLat + "," + neLong
-            location: fullerton
+            location: 'san-fransico'
         })
             .then(function(data) {
                 res.json(data);
@@ -174,7 +175,30 @@ module.exports = function(app, passport) {
             }
         });
     });
+/*app.post('/try', function(req, res) {
+       
+           
+            var ww =  req.body.category;
+            global.ww = req.body.category;
+          
+       
+        console.log(ww);
 
+        
+    });*/
+
+
+ app.post('/try2', function(req, res) {
+       //console.log("YEEEE");
+           
+            var city =  req.body.txtPlaces;
+            global.city = req.body.txtPlaces;
+          
+       
+        console.log(city);
+
+        
+    });
     app.post('/api/photo', function(req, res) {
         upload(req, res, function(err) {
             if (err) {
